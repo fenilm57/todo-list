@@ -19,4 +19,5 @@ from django.urls import path
 
 urlpatterns = [
     path('', views.home),
+    path('showList.html', views.showList),
 ]
