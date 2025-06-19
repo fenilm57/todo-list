@@ -36,20 +36,33 @@
     </nav>
 
     <!-- Task Cards -->
+    {% if tasks %}
     <div class="container mt-5">
       <h2 class="mb-4">Your Tasks</h2>
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         <!-- Example Task Card -->
+        {% for task in tasks %}
         <div class="col">
           <div class="card h-100 shadow-sm">
             <div class="card-body">
-              <h5 class="card-title">Sample Task Title</h5>
-              <p class="card-text">This is a brief description of the task.</p>
+              <h5 class="card-title"><strong>{{ task.title }}</strong></h5>
+              <p class="card-text">{{ task.description }}</p>
+              <form method="post" action="showList.html">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm">
+                  Delete
+                </button>
+              </form>
             </div>
           </div>
         </div>
+
+        {% endfor %}
         <!-- Duplicate the above card structure as needed -->
       </div>
     </div>
+    {% else %}
+    <h1>No tasks yet</h1>
+    {% endif %}
   </body>
 </html>
