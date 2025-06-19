@@ -47,7 +47,7 @@
             <div class="card-body">
               <h5 class="card-title"><strong>{{ task.title }}</strong></h5>
               <p class="card-text">{{ task.description }}</p>
-              <form method="post" action="showList.html">
+              <form method="post" action="{% url 'delete_task' task.id %}">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger btn-sm">
                   Delete

@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import get_object_or_404, render, redirect, HttpResponse
 from home.models import Task
 # Create your views here.
 
@@ -24,10 +24,8 @@ def showList(request):
     return render(request, 'showList.html', {'tasks': tasks})
 
 
-def delete_task(request):
+def delete_task(request, id):
     if request.method == 'POST':
-        id = request.POST['id']
-        task = Task(id=id)
+        task = get_object_or_404(Task, id=id)
         task.delete()
-        print(redirect)
-    return render(request, 'home.html')
+    return redirect('showList')

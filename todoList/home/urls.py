@@ -19,5 +19,6 @@ from django.urls import path
 
 urlpatterns = [
     path('', views.home),
-    path('showList.html', views.showList),
+    path('showList.html', views.showList, name='showList'),
+    path('delete/<int:id>/', views.delete_task, name='delete_task')
 ]
